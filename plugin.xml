@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin id="back2native-cordova-plugin" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-	<name>back2native</name>
+	<name>back2native-cordova-plugin</name>
 	<js-module name="back2native" src="www/back2native.js">
 		<clobbers target="cordova.plugins.back2native" />
 	</js-module>
