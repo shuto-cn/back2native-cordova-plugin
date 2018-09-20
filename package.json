@@ -1,0 +1,19 @@
+{
+  "name": "back2native",
+  "version": "1.0.0",
+  "description": "Back to Native App",
+  "cordova": {
+    "id": "back2native-cordova-plugin",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "wux",
+  "license": "ISC"
+}
