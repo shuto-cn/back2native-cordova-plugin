@@ -3,7 +3,7 @@
 #import <Cordova/CDV.h>
 
 @interface back2native : CDVPlugin {
-  // Member variables go here.
+    // Member variables go here.
 }
 
 - (void)back:(CDVInvokedUrlCommand*)command;
@@ -12,12 +12,17 @@
 @implementation back2native
 
 - (void)back:(CDVInvokedUrlCommand *)command {
-    [self dismiss:command];
-    [self pop:command];
+    if (self.viewController.navigationController.viewControllers.count == 1 &&
+        self.viewController.navigationController.topViewController == self.viewController) {
+        [self.viewController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        [self.viewController.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)dismiss:(CDVInvokedUrlCommand *)command {
-  [self.viewController dismissViewControllerAnimated:YES completion:nil];
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)pop:(CDVInvokedUrlCommand *)command {

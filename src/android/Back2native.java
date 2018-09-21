@@ -23,37 +23,38 @@ public class Back2native extends CordovaPlugin {
     }
 
     private boolean goBack(CallbackContext callbackContext) {
-			try {
+        try {
+            this.cordova.getActivity().finish();
+//            // try to send it back and back to previous app
+//            boolean sentAppToBackground = this.cordova.getActivity().moveTaskToBack(true);
+//
+//            // if not possible jump to home
+//            if (!sentAppToBackground) {
+//                Intent i = new Intent(Intent.ACTION_MAIN);
+//                i.setAction(Intent.ACTION_MAIN);
+//                i.addCategory(Intent.CATEGORY_HOME);
+//                this.cordova.getActivity().startActivity(i);
+//            }
+            callbackContext.success();
+            return true;
 
-				// try to send it back and back to previous app
-				boolean sentAppToBackground = this.cordova.getActivity().moveTaskToBack(true);
+        } catch (Exception e) {
+            Log.e(Back2native.class.getSimpleName(), "Exception occurred: ".concat(e.getMessage()));
+            return false;
+        }
+    }
 
-				// if not possible jump to home
-				if(!sentAppToBackground){
-				  Intent i = new Intent(Intent.ACTION_MAIN);
-				  i.setAction(Intent.ACTION_MAIN);
-				  i.addCategory(Intent.CATEGORY_HOME);
-				  this.cordova.getActivity().startActivity(i);
-				}
-			callbackContext.success();
-			return true;
+    private boolean goHome(CallbackContext callbackContext) {
+        try {
+            Intent i = new Intent(Intent.ACTION_MAIN);
+            i.addCategory(Intent.CATEGORY_HOME);
+            this.cordova.getActivity().startActivity(i);
+            callbackContext.success();
+            return true;
 
-			} catch (Exception e) {
-				Log.e(Back2native.class.getSimpleName(), "Exception occurred: ".concat(e.getMessage()));
-				return false;
-			}
-		}
-		private boolean goHome(CallbackContext callbackContext){
-			try {
-				Intent i = new Intent(Intent.ACTION_MAIN);
-                i.addCategory(Intent.CATEGORY_HOME);
-                this.cordova.getActivity().startActivity(i);
-			callbackContext.success();
-			return true;
-
-			} catch (Exception e) {
-				Log.e(Back2native.class.getSimpleName(), "Exception occurred: ".concat(e.getMessage()));
-				return false;
-			}
+        } catch (Exception e) {
+            Log.e(Back2native.class.getSimpleName(), "Exception occurred: ".concat(e.getMessage()));
+            return false;
+        }
     }
 }
